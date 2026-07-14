@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BK 投資卡關地圖｜你卡住的不是努力，而是順序</title>
+  <meta name="description" content="給填寫投資狀態診斷問卷的人：用五大投資卡關類型，快速看懂自己目前最該補上的投資能力。" />
+  <style>
+    :root{
+      --bg:#07111f; --bg2:#0b1c33; --card:#10233e; --card2:#132a49;
+      --line:rgba(255,255,255,.12); --line2:rgba(217,164,65,.35);
+      --text:#f7f1e1; --muted:#c4cbd6; --gold:#d9a441; --gold2:#f5d48b;
+      --blue:#72b8ff; --green:#9ad5b6; --danger:#ffb1a9; --shadow:0 24px 80px rgba(0,0,0,.32);
+      --radius:28px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+      background:
+        radial-gradient(circle at 18% 6%, rgba(217,164,65,.20), transparent 30%),
+        radial-gradient(circle at 88% 9%, rgba(114,184,255,.14), transparent 26%),
+        linear-gradient(180deg,var(--bg),#08182b 45%,#05101f 100%);
+      color:var(--text); line-height:1.78; letter-spacing:.01em; font-weight:400; overflow-x:hidden;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1120px,calc(100% - 40px));margin:0 auto}
+    header{position:sticky;top:0;z-index:20;background:rgba(7,17,31,.78);border-bottom:1px solid var(--line);backdrop-filter:blur(18px)}
+    .nav{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:15px 0}
+    .brand{font-size:14px;font-weight:800;letter-spacing:.12em;color:var(--gold2)}
+    .links{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+    .links a{padding:8px 10px;border-radius:999px}
+    .links a:hover{background:rgba(255,255,255,.07);color:#fff}
+    .hero{padding:clamp(58px,8vw,104px) 0 56px}
+    .hero-card{position:relative;border:1px solid var(--line);border-radius:38px;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.035));box-shadow:var(--shadow);padding:clamp(32px,5vw,58px);overflow:hidden}
+    .hero-card:after{content:"";position:absolute;right:-120px;top:-120px;width:320px;height:320px;border:1px solid rgba(217,164,65,.22);border-radius:50%}
+    .eyebrow{display:inline-flex;border:1px solid var(--line2);border-radius:999px;padding:8px 14px;color:var(--gold2);background:rgba(217,164,65,.10);font-size:14px;margin-bottom:22px}
+    h1,h2,h3,p{margin-top:0}
+    h1{font-size:clamp(34px,5.8vw,68px);line-height:1.13;letter-spacing:-.035em;margin:0 0 22px;max-width:900px;text-wrap:balance;font-weight:760}
+    h1 span{display:block;color:var(--gold2)}
+    .lead{font-size:clamp(17px,2vw,22px);color:var(--muted);max-width:840px;margin-bottom:30px}
+    .btn-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:14px 22px;font-weight:800;text-align:center;transition:.2s}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#07111f;box-shadow:0 14px 30px rgba(217,164,65,.26)}
+    .btn-ghost{border:1px solid var(--line2);background:rgba(217,164,65,.08);color:var(--gold2)}
+    .trust-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
+    .trust{border:1px solid rgba(217,164,65,.22);background:rgba(217,164,65,.075);border-radius:20px;padding:18px}
+    .trust b{display:block;color:var(--gold2);font-size:18px;margin-bottom:4px}
+    .trust span{color:var(--muted);font-size:14px}
+    section{padding:clamp(58px,7vw,88px) 0;border-top:1px solid rgba(255,255,255,.08)}
+    .section-head{margin-bottom:32px}.chapter{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold2);font-weight:750;margin-bottom:10px}
+    h2{font-size:clamp(30px,4.2vw,50px);line-height:1.18;letter-spacing:-.03em;margin-bottom:14px;text-wrap:balance}
+    .section-lead{font-size:clamp(16px,1.8vw,20px);color:var(--muted);max-width:820px;margin:0}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,310px),1fr));gap:18px}
+    .type-card{position:relative;border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,.045);padding:26px;box-shadow:0 12px 44px rgba(0,0,0,.15)}
+    .type-num{width:42px;height:42px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#07111f;font-weight:900;margin-bottom:16px}
+    .type-card h3{font-size:25px;line-height:1.32;color:var(--gold2);margin-bottom:12px}
+    .type-card p{color:var(--muted);margin-bottom:12px}.type-card strong{color:#fff}.tag{display:inline-flex;border:1px solid rgba(245,212,139,.26);border-radius:999px;padding:6px 10px;color:var(--gold2);font-size:13px;background:rgba(217,164,65,.08)}
+    .diagnosis{display:grid;grid-template-columns:.9fr 1.1fr;gap:22px;align-items:start}
+    .choice-box,.result-box{border:1px solid var(--line);border-radius:30px;background:rgba(255,255,255,.045);padding:26px;box-shadow:var(--shadow)}
+    .choice{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;border:1px solid rgba(255,255,255,.12);border-radius:18px;background:rgba(255,255,255,.035);color:var(--text);padding:15px 16px;margin:10px 0;font-size:16px;cursor:pointer;font-family:inherit;transition:.2s}
+    .choice:hover,.choice.active{border-color:rgba(245,212,139,.62);background:rgba(217,164,65,.12)}
+    .choice span{color:var(--gold2);font-weight:800}
+    .result-title{font-size:30px;line-height:1.25;color:var(--gold2);margin-bottom:10px}
+    .result-block{border-top:1px solid var(--line);padding-top:16px;margin-top:16px}.result-block b{color:#fff}.result-block p{color:var(--muted);margin:6px 0 0}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}.panel{border:1px solid rgba(217,164,65,.25);border-radius:30px;background:linear-gradient(180deg,rgba(217,164,65,.09),rgba(255,255,255,.04));padding:28px}.panel h3{font-size:28px;color:var(--gold2);margin-bottom:14px}.steps{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:18px 0}.step{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:rgba(245,212,139,.14);border:1px solid rgba(245,212,139,.38);color:var(--gold2);font-weight:900}.arrow{color:var(--gold2)}.panel ul{padding-left:20px;color:var(--muted);margin-bottom:0}.panel li{margin:7px 0}
+    .cta-final{border:1px solid rgba(217,164,65,.34);border-radius:38px;background:linear-gradient(135deg,rgba(217,164,65,.14),rgba(139,188,255,.06));padding:clamp(28px,4vw,44px);text-align:center;box-shadow:var(--shadow)}
+    .cta-final h2{max-width:880px;margin-left:auto;margin-right:auto}.cta-final p{color:var(--muted);max-width:850px;margin:0 auto 26px;font-size:18px}
+    footer{padding:36px 0 56px;text-align:center;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}footer b{display:block;color:var(--gold2);font-size:17px;margin-bottom:6px}
+    @media(max-width:860px){.links{display:none}.trust-row,.diagnosis,.two-col{grid-template-columns:1fr}.hero-card{border-radius:30px}.choice-box,.result-box{padding:22px}}
+    @media(max-width:560px){.wrap{width:min(1120px,calc(100% - 28px))}.hero{padding-top:42px}h1{font-size:34px}.trust-row{grid-template-columns:1fr}.btn{width:100%}.type-card,.panel{padding:22px;border-radius:24px}}
+  </style>
+</head>
+<body>
+  <header><div class="wrap nav"><a class="brand" href="#top">BK 投資卡關地圖</a><nav class="links"><a href="#types">五大卡關</a><a href="#diagnosis">自我診斷</a><a href="#next">下一步</a></nav></div></header>
+  <main id="top">
+    <section class="hero"><div class="wrap hero-card"><div class="eyebrow">給完成投資狀態診斷問卷的你</div><h1>你不是不努力，<span>你只是還沒找出真正卡住的位置。</span></h1><p class="lead">很多人投資做了很多功課，也看了很多資訊，但結果還是不穩定。這份分析會先幫你把常見卡關點整理出來，讓你知道自己下一步最該補上的能力。</p><div class="btn-row"><a class="btn btn-gold" href="#diagnosis">開始看我的卡關類型 →</a><a class="btn btn-ghost" href="#types">先看五大類型</a></div><div class="trust-row"><div class="trust"><b>5 種卡關類型</b><span>從不敢配置、賠錢陰影到現金流設計</span></div><div class="trust"><b>1 個自我診斷</b><span>快速知道你目前最像哪一型</span></div><div class="trust"><b>下一步能力</b><span>不是多看資訊，而是補對能力</span></div></div></div></section>
+    <section id="types"><div class="wrap"><div class="section-head"><p class="chapter">Common patterns</p><h2>五大投資卡關類型</h2><p class="section-lead">這些類型不是要幫你貼標籤，而是幫你更快看懂：你現在需要補的不是哪一檔標的，而是哪一個投資能力。</p></div><div class="grid">
+      <article class="type-card"><div class="type-num">1</div><h3>有錢但不敢配置型</h3><p><strong>常見狀態：</strong>手上有現金、有收入，但每次要真正投入市場時都會猶豫。</p><p><strong>底層問題：</strong>缺的不是標的，而是一張資產配置地圖。</p><span class="tag">下一步：建立資產分層與投入規則</span></article>
+      <article class="type-card"><div class="type-num">2</div><h3>賠過錢不敢重啟型</h3><p><strong>常見狀態：</strong>曾經買過個股、基金、加密或高股息受傷，現在要重新開始就猶豫。</p><p><strong>底層問題：</strong>你需要拆解過去失敗是標的、倉位、時間，還是策略問題。</p><span class="tag">下一步：重建可長期執行的方法</span></article>
+      <article class="type-card"><div class="type-num">3</div><h3>很認真交易但獲利留不住型</h3><p><strong>常見狀態：</strong>每天看盤、追新聞、研究標的，也有賺過，但一年下來留下的不多。</p><p><strong>底層問題：</strong>努力方向太消耗，有參與感不代表能累積成果。</p><span class="tag">下一步：從抓機會轉成建系統</span></article>
+      <article class="type-card"><div class="type-num">4</div><h3>想現金流但節奏不清型</h3><p><strong>常見狀態：</strong>想要每月現金流，但不知道本金、策略、風險與節奏該怎麼安排。</p><p><strong>底層問題：</strong>還沒分清楚高配息、提領設計與真正可持續現金流。</p><span class="tag">下一步：盤點本金與提領節奏</span></article>
+      <article class="type-card"><div class="type-num">5</div><h3>什麼都有買但整體零散型</h3><p><strong>常見狀態：</strong>ETF、基金、保險、定存都有，但不知道整體是否朝財務自由前進。</p><p><strong>底層問題：</strong>不是缺工具，而是缺總控台。</p><span class="tag">下一步：讓每一筆錢各司其職</span></article>
+    </div></div></section>
+    <section id="diagnosis"><div class="wrap"><div class="section-head"><p class="chapter">Self check</p><h2>你最像哪一種投資卡關類型？</h2><p class="section-lead">點一個最接近你目前狀態的選項，先看你下一階段最該補上的能力。</p></div><div class="diagnosis"><div class="choice-box"><button class="choice active" data-type="map"><span>01</span>我有資金，但不敢大筆配置</button><button class="choice" data-type="restart"><span>02</span>我賠過錢，現在很難重新開始</button><button class="choice" data-type="system"><span>03</span>我很常交易，但成果不穩</button><button class="choice" data-type="cashflow"><span>04</span>我想要每月現金流</button><button class="choice" data-type="dashboard"><span>05</span>我買很多東西，但整體很亂</button></div><div class="result-box"><div id="result"></div></div></div></div></section>
+    <section><div class="wrap"><div class="section-head"><p class="chapter">Two routes</p><h2>小資族與高資產，方法不挑人，但階段重點不同。</h2><p class="section-lead">同一套底層方法，可以服務不同起點。差別在於：你現在最重要的任務，是累積資金，還是讓資產開始創造現金流。</p></div><div class="two-col"><div class="panel"><h3>小資族／普通收入：累積資金</h3><div class="steps"><span class="step">1</span><span>穩定投入</span><span class="arrow">→</span><span class="step">2</span><span>資產配置</span><span class="arrow">→</span><span class="step">3</span><span>累積資金</span></div><ul><li>先建立投資習慣</li><li>降低錯誤成本</li><li>把收入慢慢變成資產</li></ul></div><div class="panel"><h3>高資產：創造每月現金流</h3><div class="steps"><span class="step">1</span><span>盤點資產</span><span class="arrow">→</span><span class="step">2</span><span>提領設計</span><span class="arrow">→</span><span class="step">3</span><span>每月現金流</span></div><ul><li>檢查資產是否各司其職</li><li>建立提領節奏與安全邊界</li><li>讓資產開始支撐生活</li></ul></div></div></div></section>
+    <section id="next"><div class="wrap cta-final"><p class="chapter">Next live</p><h2>下一場直播，我會直接回應這次問卷裡最多人卡住的問題。</h2><p>這場直播不會只是講觀念，而是會把「有資金但不敢配置」、「賠過錢不敢重啟」、「交易很努力但成果不穩」、「想要現金流卻不知道節奏」這些問題，整理成可以執行的投資路線。</p><div class="btn-row" style="justify-content:center"><a class="btn btn-ghost" href="javascript:window.print()">列印／截圖儲存這份分析</a></div></div></section>
+  </main>
+  <footer><div class="wrap"><b>BK Invest｜投資狀態診斷</b><div>本頁內容僅供教育與自我整理使用，不構成任何個別化投資建議、買賣推薦或收益保證。</div></div></footer>
+  <script>
+    const data={
+      map:{title:'有錢但不敢配置型', symptom:'你手上有資金，但總覺得現在不是好時機，怕買高、怕崩盤、怕配置錯。', issue:'真正卡住的通常不是市場，而是沒有資產配置地圖與投入規則。', ability:'資產配置順序：現金、ETF、債券、提領資金，各自負責什麼任務。', action:'先把資產分成「安全水位、長期成長、未來提領」三個桶子。'},
+      restart:{title:'賠過錢不敢重啟型', symptom:'你不是不想重新開始，而是過去的虧損讓你每次進場都先想到風險。', issue:'你需要拆解過去到底錯在標的、倉位、時間，還是策略，而不是只靠信心喊話。', ability:'投資心態重建：建立一套不需要靠情緒判斷、能長期執行的方法。', action:'回頭寫下過去最大的一次虧損，並標註它是標的錯、倉位錯、時間錯或策略錯。'},
+      system:{title:'很認真交易但獲利留不住型', symptom:'你很努力看盤、研究標的，也賺過錢，但一年下來真正留下來的成果不多。', issue:'你可能把很多精力花在短期機會上，但沒有建立可累積成果的系統。', ability:'長期策略系統：從「我要抓到機會」轉成「我要累積可複製的成果」。', action:'先統計過去一年真正留下來的淨獲利，而不是只看曾經賺過的交易。'},
+      cashflow:{title:'想創造現金流但節奏不清型', symptom:'你想要每月現金流，但不知道本金、策略、風險與提領節奏該怎麼安排。', issue:'你需要先分清楚高配息、割肉配息、提領設計與真正可持續現金流。', ability:'現金流與提領設計：本金、目標現金流、風險承受度與提領節奏。', action:'先寫下你希望每月現金流金額，再反推需要的資產規模與可承受波動。'},
+      dashboard:{title:'什麼都有買但整體零散型', symptom:'你有買很多商品，每個單看都好像合理，但放在一起不知道有沒有往同一個方向前進。', issue:'你不是缺更多工具，而是缺一個資產總控台。', ability:'資產盤點能力：把資產整理成成長、穩定、現金流與生活自由四個任務。', action:'列出所有帳戶與商品，標註每一項資產負責的任務，沒有任務的先暫停加碼。'}
+    };
+    const result=document.getElementById('result');
+    function render(k){const x=data[k];result.innerHTML=`<div class="result-title">${x.title}</div><div class="result-block"><b>你的常見狀態</b><p>${x.symptom}</p></div><div class="result-block"><b>真正卡住的位置</b><p>${x.issue}</p></div><div class="result-block"><b>下一階段最該補上的能力</b><p>${x.ability}</p></div><div class="result-block"><b>今天可以先做的一件事</b><p>${x.action}</p></div>`}
+    document.querySelectorAll('.choice').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.choice').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render(btn.dataset.type)}));
+    render('map');
+  </script>
+</body>
+</html>
